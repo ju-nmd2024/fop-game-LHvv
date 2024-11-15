@@ -1,10 +1,32 @@
+let starX = [];
+let starY = [];
+let starAlpha = [];
+let color1;
+let color2;
+let x = 400;
+let y = -100;
+
+
 function setup() {
   createCanvas(1600, 900);
+  setupStars();
+  frameRate(60);
 
 }
 
-// Character
-function character(x,y) {
+function setupStars() {
+  for (let i=0;i<300;i++) {
+    const x = Math.floor(Math.random() * 1600);
+    const y = Math.floor(Math.random() * 700);
+    const alpha = Math.random();
+
+    starX.push(x);
+    starY.push(y);
+    starAlpha.push(alpha);
+  }
+}
+
+function drawCharacter(x,y) {
   // Cloud 
   noStroke();
   fill(0);
@@ -31,14 +53,12 @@ function character(x,y) {
   fill(0,0,0);
   ellipse(x-15,y-150,40,55);
  
-
   // Head 
   noStroke();
   fill(0);
   ellipse(x-15,y-190,80,80);
   ellipse(x+2,y-175,60,50);
   ellipse(x-28,y-208,50,55);
-  
 
   // Hair 
   fill(0);
@@ -97,8 +117,6 @@ function character(x,y) {
  
 }
 
-let color1,color2;
-
 function drawBackground() {
   color1 = color(20,30,85);
   color2 = color(140,170,190);
@@ -110,8 +128,8 @@ function drawBackground() {
     line(0,y,1600,y);  
   }
 
-  color1 = color(6,7,45);
-  color2 = color(77,96,167);
+  color1 = color(10,10,45);
+  color2 = color(75,95,165);
   
   for(let y=700; y<900; y++) {
     c = map(y,700,900,0,1);
@@ -119,18 +137,23 @@ function drawBackground() {
     stroke(newcolor);
     line(0,y,1600,y);
   }
+
+  drawStars();
 }
 
-let x = 400;
-let y = -100;
-frameRate(60);
+function drawStars() {
+  for (let index in starX) {
+    fill(255, 255, 255, Math.sin(starAlpha[index]) * 255);
+    noStroke();
+    ellipse(starX[index], starY[index], 4);
+    starAlpha[index] = starAlpha[index] + 0.05; 
+  }
+}
 
 function draw() {  
-  // Background
+  
   drawBackground();
-
-  // Character
-  character(x,y);
+  drawCharacter(x,y);
 
   // Movement stop at this position
   if ( y <= 700) {
