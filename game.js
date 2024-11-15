@@ -139,15 +139,28 @@ function drawBackground() {
   }
 
   drawStars();
+  drawMoon(width / 2, height / 3, 250); 
 }
 
 function drawStars() {
   for (let index in starX) {
-    fill(255, 255, 255, Math.sin(starAlpha[index]) * 255);
     noStroke();
+    fill(255, 255, 255, Math.sin(starAlpha[index]) * 255);
     ellipse(starX[index], starY[index], 4);
     starAlpha[index] = starAlpha[index] + 0.05; 
   }
+}
+
+function drawMoon(x,y,size) {
+  drawingContext.shadowBlur = 50;
+  drawingContext.shadowColor = color(255, 255, 200);
+
+  noStroke();
+  fill(255,255,200);
+  ellipse(x,y,size,size);
+
+  drawingContext.shadowBlur = 0;
+  
 }
 
 function draw() {  
