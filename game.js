@@ -1,10 +1,10 @@
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1600, 900);
+
 }
 
 // Character
 function character(x,y) {
-
   // Cloud 
   noStroke();
   fill(0);
@@ -97,19 +97,43 @@ function character(x,y) {
  
 }
 
+let color1,color2;
+
+function drawBackground() {
+  color1 = color(20,30,85);
+  color2 = color(140,170,190);
+  
+  for(let y=0; y<700; y++) {
+    c = map(y,0,700,0,1);
+    let newcolor = lerpColor(color1,color2,c);
+    stroke(newcolor);
+    line(0,y,1600,y);  
+  }
+
+  color1 = color(6,7,45);
+  color2 = color(77,96,167);
+  
+  for(let y=700; y<900; y++) {
+    c = map(y,700,900,0,1);
+    let newcolor = lerpColor(color1,color2,c);
+    stroke(newcolor);
+    line(0,y,1600,y);
+  }
+}
+
 let x = 400;
 let y = -100;
 frameRate(60);
 
-// Character movement
-function draw() {
+function draw() {  
+  // Background
+  drawBackground();
 
-  // Background and Position
-  background(120, 165, 200);
+  // Character
   character(x,y);
 
   // Movement stop at this position
-  if ( y <= 750) {
+  if ( y <= 700) {
       y = y + 5;
   } 
 
@@ -130,7 +154,7 @@ function draw() {
 // Spacebar key to reset character position
 function keyPressed()  {
   if (keyCode === 32) {
-      y = -150;
+      y = -100;
       x = 400;
   }
 }
