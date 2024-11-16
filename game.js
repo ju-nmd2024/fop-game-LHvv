@@ -4,21 +4,21 @@ let starAlpha = [];
 let color1;
 let color2;
 let x = 400;
-let y = -100;
+let y = 200;
 let seaWave1 = 0;
 let seaWave2 = 0;
 let seaWave3 = 0;
 
 
 function setup() {
-  createCanvas(1600, 900);
+  createCanvas(900, 900);
   setupStars();
   frameRate(60);
 
 }
 
 function setupStars() {
-  for (let i=0;i<300;i++) {
+  for (let i = 0; i < 300 ; i++ ) {
     const x = Math.floor(Math.random() * 1600);
     const y = Math.floor(Math.random() * 700);
     const alpha = Math.random();
@@ -29,7 +29,7 @@ function setupStars() {
   }
 }
 
-function drawCharacter(x,y) {
+function drawCharacter(x, y) {
   // Scaling factor
   let scale = 0.6;
 
@@ -124,18 +124,18 @@ function drawCharacter(x,y) {
 }
 
 function drawBackground() {
-  color1 = color(20,30,85);
-  color2 = color(140,170,190);
+  color1 = color(20, 30, 85);
+  color2 = color(140, 170, 190);
   
-  for(let y=0; y<700; y++) {
-    c = map(y,0,700,0,1);
-    let newcolor = lerpColor(color1,color2,c);
+  for(let y = 0; y < 750 ; y++ ) {
+    c = map(y, 0, 700, 0, 1);
+    let newcolor = lerpColor(color1, color2, c);
     stroke(newcolor);
-    line(0,y,1600,y);  
+    line(0, y, 900, y);  
   }
 
   drawStars();
-  drawMoon(width / 2, height / 3, 250); 
+  drawMoon(width / 2, height / 4, 250); 
   drawSea();
 }
 
@@ -148,12 +148,12 @@ function drawStars() {
   }
 }
 
-function drawMoon(x,y,size) {
+function drawMoon(x, y, size) {
   drawingContext.shadowBlur = 50;
   drawingContext.shadowColor = color(255, 255, 200);
 
   noStroke();
-  fill(255,255,200);
+  fill(255, 255, 200);
   ellipse(x,y,size,size);
 
   drawingContext.shadowBlur = 0;
@@ -167,36 +167,36 @@ function drawSea() {
   beginShape();
   for (let i = 0; i <= 1600; i += 10) {
     let waveHeight = sin((i + seaWave1) * 0.03) * 10;
-    vertex(i, 680 + waveHeight); 
+    vertex(i, 710 + waveHeight); 
   }
-  vertex(1600, height);
+  vertex(900, height);
   vertex(0, height);
   endShape(CLOSE);
 
   noStroke();
   fill(30, 50, 135); 
   beginShape();
-  for (let i = 0; i <= 1600; i += 10) {
+  for (let i = 0; i <= 900; i += 10) {
     let waveHeight = sin((i + seaWave2) * 0.02) * 15;
-    vertex(i, 690 + waveHeight); 
+    vertex(i, 730 + waveHeight); 
   }
-  vertex(1600, height);
+  vertex(900, height);
   vertex(0, height);
   endShape(CLOSE);
 
   noStroke();
   fill(10, 10, 115); 
   beginShape();
-  for (let i = 0; i <= 1600; i += 10) {
+  for (let i = 0; i <= 900; i += 10) {
     let waveHeight = sin((i + seaWave3) * 0.01) * 20;
-    vertex(i, 710 + waveHeight); 
+    vertex(i, 750 + waveHeight); 
   }
-  vertex(1600, height);
+  vertex(900, height);
   vertex(0, height);
   endShape(CLOSE);
 
   fill(10, 10, 115); 
-  rect(0, 800, 1600, height); 
+  rect(0, 850, 900, height); 
 
   seaWave1 += 1; 
   seaWave2 += 2; 
@@ -228,11 +228,4 @@ function draw() {
   }   
 }
 
-// Spacebar key to reset character position
-function keyPressed()  {
-  if (keyCode === 32) {
-      y = -100;
-      x = 400;
-  }
-}
 
