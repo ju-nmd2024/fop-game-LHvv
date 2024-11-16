@@ -6,6 +6,8 @@ let color2;
 let x = 400;
 let y = -100;
 let seaWave1 = 0;
+let seaWave2 = 0;
+let seaWave3 = 0;
 
 
 function setup() {
@@ -156,6 +158,7 @@ function drawMoon(x,y,size) {
 }
 
 function drawSea() {
+
   noStroke();
   fill(45, 75, 145); 
   beginShape();
@@ -167,7 +170,35 @@ function drawSea() {
   vertex(0, height);
   endShape(CLOSE);
 
+  noStroke();
+  fill(30, 50, 135); 
+  beginShape();
+  for (let i = 0; i <= width; i += 10) {
+    let waveHeight = sin((i + seaWave2) * 0.02) * 15;
+    vertex(i, 690 + waveHeight); 
+  }
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+  noStroke();
+  fill(10, 10, 115); 
+  beginShape();
+  for (let i = 0; i <= width; i += 10) {
+    let waveHeight = sin((i + seaWave3) * 0.01) * 20;
+    vertex(i, 710 + waveHeight); 
+  }
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+  fill(10, 10, 115); 
+  rect(0, 800, width, height);
+
   seaWave1 += 1; 
+  seaWave2+= 2; 
+  seaWave3 += 3; 
+
 }
 
 function draw() {  
