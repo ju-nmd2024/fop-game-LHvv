@@ -5,6 +5,7 @@ let color1;
 let color2;
 let x = 400;
 let y = -100;
+let seaWave1 = 0;
 
 
 function setup() {
@@ -128,18 +129,9 @@ function drawBackground() {
     line(0,y,1600,y);  
   }
 
-  color1 = color(10,10,45);
-  color2 = color(75,95,165);
-  
-  for(let y=700; y<900; y++) {
-    c = map(y,700,900,0,1);
-    let newcolor = lerpColor(color1,color2,c);
-    stroke(newcolor);
-    line(0,y,1600,y);
-  }
-
   drawStars();
   drawMoon(width / 2, height / 3, 250); 
+  drawSea();
 }
 
 function drawStars() {
@@ -161,6 +153,21 @@ function drawMoon(x,y,size) {
 
   drawingContext.shadowBlur = 0;
   
+}
+
+function drawSea() {
+  noStroke();
+  fill(45, 75, 145); 
+  beginShape();
+  for (let i = 0; i <= width; i += 10) {
+    let waveHeight = sin((i + seaWave1) * 0.03) * 10;
+    vertex(i, 680 + waveHeight); 
+  }
+  vertex(width, height);
+  vertex(0, height);
+  endShape(CLOSE);
+
+  seaWave1 += 1; 
 }
 
 function draw() {  
