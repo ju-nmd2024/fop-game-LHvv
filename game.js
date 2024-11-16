@@ -3,11 +3,13 @@ let starY = [];
 let starAlpha = [];
 let color1;
 let color2;
-let x = 400;
-let y = 200;
+let x = 450;
+let y = 150;
 let seaWave1 = 0;
 let seaWave2 = 0;
 let seaWave3 = 0;
+let verticalVelocity = 0;  
+let horizontalVelocity = 0;
 
 
 function setup() {
@@ -135,7 +137,7 @@ function drawBackground() {
   }
 
   drawStars();
-  drawMoon(width / 2, height / 4, 250); 
+  drawMoon(450, height / 4, 250); 
   drawSea();
 }
 
@@ -209,23 +211,31 @@ function draw() {
   drawBackground();
   drawCharacter(x,y);
 
-  // Movement stop at this position
-  if ( y <= 700) {
-      y = y + 5;
-  } 
 
-  // Character movement with arrow keys
-  if (keyCode === 38) {
-      y = y - 10;
-  } else if (keyCode === 40) {
-      y = y + 0;
+  verticalVelocity += 0.01;  
+
+  if (keyIsDown(38)) {  
+    verticalVelocity -= 0.1;  
+  } 
+  if (keyIsDown(40)) {  
+    verticalVelocity += 0.1;  
+  }
+  if (keyIsDown(37)) {  
+    horizontalVelocity -= 0.1; 
+  } 
+  if (keyIsDown(39)) {  
+    horizontalVelocity += 0.1;  
   }
 
-  if (keyCode === 37) {
-      x = x - 5;
-  } else if (keyCode === 39) {
-      x = x + 5;
-  }   
+  y += verticalVelocity;
+  x += horizontalVelocity;
+  
+  if (y > 700) {
+    y = 700;
+    verticalVelocity = 0; 
+    horizontalVelocity = 0; 
+  }
+
 }
 
 
