@@ -10,6 +10,8 @@ let seaWave2 = 0;
 let seaWave3 = 0;
 let verticalVelocity = 0;  
 let horizontalVelocity = 0;
+let gameOver = false; 
+let win = false; 
 
 
 function setup() {
@@ -208,34 +210,49 @@ function drawSea() {
 
 function draw() {  
   
+  if (gameOver) {
+    textSize(64);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    if (win) {
+      text("You Win!", width / 2, height / 2);
+    } else {
+      text("You Lose!", width / 2, height / 2);
+    }
+    return; 
+  }
+
   drawBackground();
-  drawCharacter(x,y);
+  drawCharacter(x, y);
 
-
-  verticalVelocity += 0.01;  
-
+  verticalVelocity += 0.05; 
   if (keyIsDown(38)) {  
-    verticalVelocity -= 0.1;  
+    verticalVelocity -= 0.2;  
   } 
   if (keyIsDown(40)) {  
-    verticalVelocity += 0.1;  
+    verticalVelocity += 0.2;  
   }
   if (keyIsDown(37)) {  
-    horizontalVelocity -= 0.1; 
+    horizontalVelocity -= 0.2; 
   } 
   if (keyIsDown(39)) {  
-    horizontalVelocity += 0.1;  
+    horizontalVelocity += 0.2;  
   }
 
   y += verticalVelocity;
   x += horizontalVelocity;
   
-  if (y > 700) {
-    y = 700;
-    verticalVelocity = 0; 
+  if (y > 750) {
+    y = 750;
     horizontalVelocity = 0; 
+
+    if (verticalVelocity > 2) {  
+      gameOver = true;
+      win = false; 
+    } else if (verticalVelocity <= 2 && verticalVelocity >= -2) { 
+      win = true;
+    }
+
+    verticalVelocity = 0; 
   }
-
 }
-
-
