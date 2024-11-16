@@ -30,94 +30,97 @@ function setupStars() {
 }
 
 function drawCharacter(x,y) {
+  // Scaling factor
+  let scale = 0.6;
+
   // Cloud 
   noStroke();
   fill(0);
-  ellipse(x+40,y-30,100,100);
-  ellipse(x-10,y-45,100,100);
-  ellipse(x-60,y-30,110,100);
-  ellipse(x-90,y,120,120);
-  ellipse(x-70,y+20,110,120);
-  ellipse(x-5,y+30,120,100);
-  ellipse(x+60,y+20,120,100);
-  ellipse(x+55,y-10,120,100);
-  
-  //  Body 
+  ellipse(x + 40 * scale, y - 30 * scale, 100 * scale, 100 * scale);
+  ellipse(x - 10 * scale, y - 45 * scale, 100 * scale, 100 * scale);
+  ellipse(x - 60 * scale, y - 30 * scale, 110 * scale, 100 * scale);
+  ellipse(x - 90 * scale, y, 120 * scale, 120 * scale);
+  ellipse(x - 70 * scale, y + 20 * scale, 110 * scale, 120 * scale);
+  ellipse(x - 5 * scale, y + 30 * scale, 120 * scale, 100 * scale);
+  ellipse(x + 60 * scale, y + 20 * scale, 120 * scale, 100 * scale);
+  ellipse(x + 55 * scale, y - 10 * scale, 120 * scale, 100 * scale);
+
+  // Body 
   noStroke(0);
   fill(0);
-  ellipse(x-15,y-80,90,80);   
-  ellipse(x-20,y-110,80,80);
-  rect(x-60,y-110,5,40);
-  ellipse(x+4,y-120,40,40);
-  ellipse(x+12,y-75,50,120);
-  ellipse(x+15,y-65,50,120);
+  ellipse(x - 15 * scale, y - 80 * scale, 90 * scale, 80 * scale);   
+  ellipse(x - 20 * scale, y - 110 * scale, 80 * scale, 80 * scale);
+  rect(x - 60 * scale, y - 110 * scale, 5 * scale, 40 * scale);
+  ellipse(x + 4 * scale, y - 120 * scale, 40 * scale, 40 * scale);
+  ellipse(x + 12 * scale, y - 75 * scale, 50 * scale, 120 * scale);
+  ellipse(x + 15 * scale, y - 65 * scale, 50 * scale, 120 * scale);
 
   // Neck
-  fill(0,0,0);
-  ellipse(x-15,y-150,40,55);
- 
+  fill(0, 0, 0);
+  ellipse(x - 15 * scale, y - 150 * scale, 40 * scale, 55 * scale);
+
   // Head 
   noStroke();
   fill(0);
-  ellipse(x-15,y-190,80,80);
-  ellipse(x+2,y-175,60,50);
-  ellipse(x-28,y-208,50,55);
+  ellipse(x - 15 * scale, y - 190 * scale, 80 * scale, 80 * scale);
+  ellipse(x + 2 * scale, y - 175 * scale, 60 * scale, 50 * scale);
+  ellipse(x - 28 * scale, y - 208 * scale, 50 * scale, 55 * scale);
 
   // Hair 
   fill(0);
   beginShape();
-  vertex(x-30,y-220);
-  bezierVertex(x-30,y-220,x-35,y-280,x+10,y-300);
-  bezierVertex(x-10,y-220,x,y-220,x,y-220);
+  vertex(x - 30 * scale, y - 220 * scale);
+  bezierVertex(x - 30 * scale, y - 220 * scale, x - 35 * scale, y - 280 * scale, x + 10 * scale, y - 300 * scale);
+  bezierVertex(x - 10 * scale, y - 220 * scale, x, y - 220 * scale, x, y - 220 * scale);
   endShape();
 
   beginShape();
-  vertex(x-10,y-240);
-  bezierVertex(x-10,y-240,x+20,y-270,x+50,y-260);
-  bezierVertex(x+50,y-260,x+20,y-240,x+20,y-190);
+  vertex(x - 10 * scale, y - 240 * scale);
+  bezierVertex(x - 10 * scale, y - 240 * scale, x + 20 * scale, y - 270 * scale, x + 50 * scale, y - 260 * scale);
+  bezierVertex(x + 50 * scale, y - 260 * scale, x + 20 * scale, y - 240 * scale, x + 20 * scale, y - 190 * scale);
   endShape();
 
   beginShape();
-  vertex(x+20,y-220);
-  bezierVertex(x+20,y-220,x+40,y-240,x+60,y-220);
-  bezierVertex(x+50,y-220,x+30,y-210,x+20,y-190);
+  vertex(x + 20 * scale, y - 220 * scale);
+  bezierVertex(x + 20 * scale, y - 220 * scale, x + 40 * scale, y - 240 * scale, x + 60 * scale, y - 220 * scale);
+  bezierVertex(x + 50 * scale, y - 220 * scale, x + 30 * scale, y - 210 * scale, x + 20 * scale, y - 190 * scale);
   endShape();
 
   beginShape();
-  vertex(x+20,y-220);
-  bezierVertex(x+20,y-210,x+30,y-215,x+50,y-205);
-  bezierVertex(x+40,y-200,x+20,y-190,x+20,y-170);
+  vertex(x + 20 * scale, y - 220 * scale);
+  bezierVertex(x + 20 * scale, y - 210 * scale, x + 30 * scale, y - 215 * scale, x + 50 * scale, y - 205 * scale);
+  bezierVertex(x + 40 * scale, y - 200 * scale, x + 20 * scale, y - 190 * scale, x + 20 * scale, y - 170 * scale);
   endShape();
 
   beginShape();
-  vertex(x-50,y-210);
-  bezierVertex(x-50,y-210,x-85,y-210,x-100,y-190);
-  bezierVertex(x-50,y-200,x-55,y-180,x-55,y-190);
+  vertex(x - 50 * scale, y - 210 * scale);
+  bezierVertex(x - 50 * scale, y - 210 * scale, x - 85 * scale, y - 210 * scale, x - 100 * scale, y - 190 * scale);
+  bezierVertex(x - 50 * scale, y - 200 * scale, x - 55 * scale, y - 180 * scale, x - 55 * scale, y - 190 * scale);
   endShape();
 
   beginShape();
-  vertex(x-50,y-200);
-  bezierVertex(x-50,y-200,x-80,y-180,x-100,y-165);
-  bezierVertex(x-40,y-165,x-40,y-160,x-40,y-160);
+  vertex(x - 50 * scale, y - 200 * scale);
+  bezierVertex(x - 50 * scale, y - 200 * scale, x - 80 * scale, y - 180 * scale, x - 100 * scale, y - 165 * scale);
+  bezierVertex(x - 40 * scale, y - 165 * scale, x - 40 * scale, y - 160 * scale, x - 40 * scale, y - 160 * scale);
   endShape();
 
   beginShape();
-  vertex(x-35,y-180);
-  bezierVertex(x-35,y-180,x-70,y-165,x-85,y-150);
-  bezierVertex(x-30,y-160,x-40,y-160,x-40,y-160);
+  vertex(x - 35 * scale, y - 180 * scale);
+  bezierVertex(x - 35 * scale, y - 180 * scale, x - 70 * scale, y - 165 * scale, x - 85 * scale, y - 150 * scale);
+  bezierVertex(x - 30 * scale, y - 160 * scale, x - 40 * scale, y - 160 * scale, x - 40 * scale, y - 160 * scale);
   endShape();
 
   // Tail 
   noFill();
   stroke(0);
   strokeWeight(7);
-  bezier(x-140,y-180,x-140,y-90,x-70,y-90,x-50,y-60);
+  bezier(x - 140 * scale, y - 180 * scale, x - 140 * scale, y - 90 * scale, x - 70 * scale, y - 90 * scale, x - 50 * scale, y - 60 * scale);
 
   // Weapon
   stroke(0);
   strokeWeight(5);
-  line(x,y,x-80,y-220);
- 
+  line(x, y, x - 80 * scale, y - 220 * scale);
+
 }
 
 function drawBackground() {
@@ -158,7 +161,7 @@ function drawMoon(x,y,size) {
 }
 
 function drawSea() {
-  
+
   noStroke();
   fill(45, 75, 145); 
   beginShape();
