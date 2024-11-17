@@ -13,6 +13,8 @@ let horizontalVelocity = 0;
 let gameOver = false; 
 let win = false; 
 let realWin = false;
+let gameState = "start"; 
+
 
 
 function setup() {
@@ -209,7 +211,15 @@ function drawSea() {
 }
 
 
-function draw() {  
+function draw() {
+  if (gameState === "start") {
+    drawStartScreen();
+  } else if (gameState === "play") {
+    playGame();
+  }
+}
+
+function playGame() {  
 
   if (gameOver && !realWin) {
     textSize(64);
@@ -272,4 +282,21 @@ function draw() {
 
     verticalVelocity = 0; 
   }
+}
+
+function drawStartScreen() {
+  background(0);
+  fill(255);
+  textSize(48);
+  textAlign(CENTER, CENTER);
+  text("Welcome to the Game", width / 2, height / 2 - 50);
+  textSize(32);
+  text("Press ENTER to Start", width / 2, height / 2 + 50);
+}
+
+function keyPressed() {
+  if (gameState === "start" && keyCode === ENTER) {
+    gameState = "play"; // Start the game
+    resetGame();
+  } 
 }
