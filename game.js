@@ -14,7 +14,7 @@ let gameOver = false;
 let win = false; 
 let realWin = false;
 let gameState = "start"; 
-
+let realWinTimer = 0;
 
 
 function setup() {
@@ -216,21 +216,16 @@ function draw() {
     drawStartScreen();
   } else if (gameState === "play") {
     playGame();
+  } else if (gameState === "reset") {
+    drawResetScreen();
   }
 }
 
 function playGame() {  
 
   if (gameOver && !realWin) {
-    textSize(64);
-    textAlign(CENTER, CENTER);
-    fill(255);
-    if (win) {
-      text("", width / 2, height / 2);
-    } else {
-      text("You Lose!", width / 2, height / 2);
-    }
-    return; 
+    gameState = "reset";
+    return;
   }
 
   drawBackground();
@@ -294,9 +289,37 @@ function drawStartScreen() {
   text("Press ENTER to Start", width / 2, height / 2 + 50);
 }
 
+function drawResetScreen() {
+  background(0);
+  fill(255);
+  textSize(48);
+  textAlign(CENTER, CENTER);
+  if (win) {
+    text("You WIn!", width / 2, height / 2 + 10);
+  } else {
+    text("You Lose!", width / 2, height / 2 - 50);
+  }
+  textSize(32);
+  text("Press R to Restart", width / 2, height / 2 + 100);
+}
+
 function keyPressed() {
   if (gameState === "start" && keyCode === ENTER) {
     gameState = "play"; // Start the game
     resetGame();
-  } 
+  } else if (gameState === "reset" && key === "r") {
+    gameState = "start"; 
+    resetGame();
+  }
+}
+
+function resetGame() {
+  x = 450;
+  y = 150;
+  verticalVelocity = 0;
+  horizontalVelocity = 0;
+  gameOver = false;
+  win = false;
+  realWin = false;
+  loop();
 }
