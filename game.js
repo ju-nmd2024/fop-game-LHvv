@@ -237,15 +237,20 @@ function playGame() {
     fill(255);
     text("I can go home now", width / 2, height / 2);
 
-    x += 2; 
-    if (x > width + 100) { 
+    x += 3; 
+    if (x > width + 900) { 
       noLoop();
+    }
+    realWinTimer++;
+    if (realWinTimer > 300) {
+      gameState = "reset";
+      realWinTimer = 0; 
     }
     return; 
   }
 
 
-  verticalVelocity += 0.05; 
+  verticalVelocity += 0.075; 
   if (keyIsDown(38)) {  
     verticalVelocity -= 0.2;  
   } 
@@ -321,5 +326,6 @@ function resetGame() {
   gameOver = false;
   win = false;
   realWin = false;
+  realWinTimer = 0;
   loop();
 }
