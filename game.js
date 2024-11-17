@@ -12,6 +12,7 @@ let verticalVelocity = 0;
 let horizontalVelocity = 0;
 let gameOver = false; 
 let win = false; 
+let realWin = false;
 
 
 function setup() {
@@ -209,13 +210,13 @@ function drawSea() {
 
 
 function draw() {  
-  
-  if (gameOver) {
+
+  if (gameOver && !realWin) {
     textSize(64);
     textAlign(CENTER, CENTER);
     fill(255);
     if (win) {
-      text("You Win!", width / 2, height / 2);
+      text("", width / 2, height / 2);
     } else {
       text("You Lose!", width / 2, height / 2);
     }
@@ -224,6 +225,20 @@ function draw() {
 
   drawBackground();
   drawCharacter(x, y);
+
+  if (realWin) {
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("I can go home now", width / 2, height / 2);
+
+    x += 2; 
+    if (x > width + 100) { 
+      noLoop();
+    }
+    return; 
+  }
+
 
   verticalVelocity += 0.05; 
   if (keyIsDown(38)) {  
@@ -250,6 +265,8 @@ function draw() {
       gameOver = true;
       win = false; 
     } else if (verticalVelocity <= 2 && verticalVelocity >= -2) { 
+      realWin = true;
+      gameOver = false;
       win = true;
     }
 
