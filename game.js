@@ -1,3 +1,6 @@
+//  The following 31 to 41 and 156 to 163 lines of code was copy form Garrit
+//  The following 139 to 153 and 179 to 223 lines of code was inspired from p5js.org
+
 let starX = [];
 let starY = [];
 let starAlpha = [];
@@ -245,7 +248,7 @@ function playGame() {
   if (realWin) {
     textSize(32);
     textAlign(CENTER, CENTER);
-    fill(255);
+    fill(255);  
     text("Oops i don't need to swim :<", width / 2, height / 2);
 
     // Move player out of screen after landing safe
