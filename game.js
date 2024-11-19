@@ -16,7 +16,7 @@ let realWin = false;
 let gameState = "start"; 
 let realWinTimer = 0;
 
-
+// Setup
 function setup() {
   createCanvas(900, 900);
   setupStars();
@@ -24,6 +24,7 @@ function setup() {
 
 }
 
+// Setup starsbackground
 function setupStars() {
   for (let i = 0; i < 300 ; i++ ) {
     const x = Math.floor(Math.random() * 1600);
@@ -36,6 +37,7 @@ function setupStars() {
   }
 }
 
+// Draw character
 function drawCharacter(x, y) {
   // Scaling factor
   let scale = 0.6;
@@ -130,6 +132,7 @@ function drawCharacter(x, y) {
 
 }
 
+// gradiant backgorund
 function drawBackground() {
   color1 = color(20, 30, 85);
   color2 = color(140, 170, 190);
@@ -146,6 +149,7 @@ function drawBackground() {
   drawSea();
 }
 
+// Blink stars
 function drawStars() {
   for (let index in starX) {
     noStroke();
@@ -155,6 +159,7 @@ function drawStars() {
   }
 }
 
+// Draw moon 
 function drawMoon(x, y, size) {
   drawingContext.shadowBlur = 50;
   drawingContext.shadowColor = color(255, 255, 200);
@@ -167,6 +172,7 @@ function drawMoon(x, y, size) {
   
 }
 
+// Draw sea wave
 function drawSea() {
 
   noStroke();
@@ -210,7 +216,7 @@ function drawSea() {
   seaWave3 += 3; 
 }
 
-
+// Main draw loop
 function draw() {
   if (gameState === "start") {
     drawStartScreen();
@@ -221,6 +227,7 @@ function draw() {
   }
 }
 
+// Game logic
 function playGame() {  
 
   if (gameOver && !realWin) {
@@ -231,16 +238,20 @@ function playGame() {
   drawBackground();
   drawCharacter(x, y);
 
+  // When have a safe ladning that show a text 
   if (realWin) {
     textSize(32);
     textAlign(CENTER, CENTER);
     fill(255);
     text("Oops i don't need to swim :<", width / 2, height / 2);
 
+    // Move player out of screen after landing safe
     x += 3; 
     if (x > width + 900) { 
       noLoop();
     }
+    
+    // Auto-reset after a delay
     realWinTimer++;
     if (realWinTimer > 300) {
       gameState = "reset";
@@ -249,7 +260,7 @@ function playGame() {
     return; 
   }
 
-
+  // Movement and Gravity 
   verticalVelocity += 0.075; 
   if (keyIsDown(38)) {  
     verticalVelocity -= 0.2;  
@@ -267,6 +278,7 @@ function playGame() {
   y += verticalVelocity;
   x += horizontalVelocity;
   
+  // The range for win / lose landing 
   if (y > 750) {
     y = 750;
     horizontalVelocity = 0; 
@@ -284,6 +296,7 @@ function playGame() {
   }
 }
 
+// Draw a start screen 
 function drawStartScreen() {
   background(45, 75, 145);
   fill(255);
@@ -294,6 +307,7 @@ function drawStartScreen() {
   text("Press ENTER to Start", width / 2, height / 2 + 50);
 }
 
+// Draw a reset screen
 function drawResetScreen() {
   background(30, 50, 135);
   fill(255);
@@ -308,16 +322,18 @@ function drawResetScreen() {
   text("Press R to Restart", width / 2, height / 2 + 50);
 }
 
+// Key function
 function keyPressed() {
   if (gameState === "start" && keyCode === ENTER) {
     gameState = "play"; // Start the game
     resetGame();
   } else if (gameState === "reset" && key === "r") {
-    gameState = "start"; 
+    gameState = "start"; // Reset the game
     resetGame();
   }
 }
 
+// Fun
 function resetGame() {
   x = 450;
   y = 150;
