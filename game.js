@@ -235,7 +235,7 @@ function playGame() {
     textSize(32);
     textAlign(CENTER, CENTER);
     fill(255);
-    text("I can go home now", width / 2, height / 2);
+    text("Oops i don't need to swim :<", width / 2, height / 2);
 
     x += 3; 
     if (x > width + 900) { 
@@ -285,27 +285,27 @@ function playGame() {
 }
 
 function drawStartScreen() {
-  background(0);
+  background(45, 75, 145);
   fill(255);
   textSize(48);
   textAlign(CENTER, CENTER);
-  text("Welcome to the Game", width / 2, height / 2 - 50);
+  text("You shouldn't fall too quickly :V", width / 2, height / 2 - 50);
   textSize(32);
   text("Press ENTER to Start", width / 2, height / 2 + 50);
 }
 
 function drawResetScreen() {
-  background(0);
+  background(30, 50, 135);
   fill(255);
   textSize(48);
   textAlign(CENTER, CENTER);
   if (win) {
-    text("You WIn!", width / 2, height / 2 + 10);
+    text("You're safe!", width / 2, height / 2 - 50);
   } else {
-    text("You Lose!", width / 2, height / 2 - 50);
+    text("Why do you want to swim?", width / 2, height / 2 - 50);
   }
   textSize(32);
-  text("Press R to Restart", width / 2, height / 2 + 100);
+  text("Press R to Restart", width / 2, height / 2 + 50);
 }
 
 function keyPressed() {
