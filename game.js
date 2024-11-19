@@ -174,7 +174,7 @@ function drawMoon(x, y, size) {
 
 // Draw sea wave
 function drawSea() {
-
+  // seawave 1
   noStroke();
   fill(45, 75, 145); 
   beginShape();
@@ -186,6 +186,7 @@ function drawSea() {
   vertex(0, height);
   endShape(CLOSE);
 
+  // seawave 2
   noStroke();
   fill(30, 50, 135); 
   beginShape();
@@ -197,6 +198,7 @@ function drawSea() {
   vertex(0, height);
   endShape(CLOSE);
 
+  // seawave 3
   noStroke();
   fill(10, 10, 115); 
   beginShape();
@@ -211,6 +213,7 @@ function drawSea() {
   fill(10, 10, 115); 
   rect(0, 850, 900, height); 
 
+  // seawave speed
   seaWave1 += 1; 
   seaWave2 += 2; 
   seaWave3 += 3; 
@@ -333,7 +336,7 @@ function keyPressed() {
   }
 }
 
-// Fun
+// Reset the state of the game 
 function resetGame() {
   x = 450;
   y = 150;
